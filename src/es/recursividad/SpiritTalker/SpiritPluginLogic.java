@@ -12,6 +12,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import java.util.ArrayList;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.scheduler.BukkitTask;
 
 public class SpiritPluginLogic extends JavaPlugin implements Listener {
     /*  Listener classes  */
@@ -117,8 +118,14 @@ public class SpiritPluginLogic extends JavaPlugin implements Listener {
 	if (cmd.getName().equalsIgnoreCase("spirit")) {
 		switch (spiritState) {
                     case 0:
-                        Bukkit.broadcastMessage("<...> ¿Hola?");
-                        spiritState++;
+                        ArrayList<String> messages = new ArrayList<String>();
+                        messages.add("uno");
+                        messages.add("dos");
+                        messages.add("tres");
+                        messages.add("cuatro");
+                        timedMessages(messages, 25);
+                        //Bukkit.broadcastMessage("<...> ¿Hola?");
+                        //spiritState++;
                         break;
                     case 1:
                         Bukkit.broadcastMessage("<...> ¿Alguien puede oirme?");
@@ -136,6 +143,14 @@ public class SpiritPluginLogic extends JavaPlugin implements Listener {
 		return true;
 	}
 	return false;
+    }
+    
+    public void timedMessages (ArrayList<String> messages, long timeout) {
+        long delay = 0;
+        for (String message : messages) {
+            new TimedMessenger(this, message).runTaskLater(this, delay);
+            delay += timeout;
+        }
     }
 }
 

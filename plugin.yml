@@ -1,0 +1,9 @@
+name: SpiritTalker
+main: es.recursividad.SpiritTalker.SpiritPluginLogic
+version: 1
+commands:
+   spirit:
+      description: Comando para invocar al espiritu
+      usage: /<spiritu>
+      permission: <Spirit>.basic
+      permission-message: No tienes permisos para usar el comando
